@@ -15,6 +15,7 @@ import createAdmin from '../controllers/user/createAdmin';
 import forgotPassword from '../controllers/user/forgotPassword';
 import resetPassword from '../controllers/user/resetPassword';
 import verifyResetPasswordToken from '../controllers/user/verifyResetPasswordToken';
+import authStatus from '../controllers/user/authStatus';
 
 // Controllers email
 import sendEmailVerification from '../controllers/email/sendEmailVerification';
@@ -130,5 +131,11 @@ export default (router: Router) => {
   router.post(
     '/api/v1/verify-reset-password-token',
     verifyResetPasswordToken,
+  );
+
+  // verify user auth status
+  router.get(
+    '/api/v1/auth-status',
+    authStatus,
   );
 };

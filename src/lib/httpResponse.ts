@@ -24,7 +24,6 @@ export function cookieResponse(res: Response, name: string, value: string, httpO
     maxAge,
     httpOnly,
     secure: process.env.NODE_ENV === 'production',
-    domain: process.env.DOMAIN,
     sameSite: true,
   });
 }

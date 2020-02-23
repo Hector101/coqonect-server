@@ -22,6 +22,9 @@ import routes from './restful/routes';
 // GrapQL Schema
 import schema from './graphql/schema';
 
+// lib
+import metaRedirect from './lib/metaRedirect';
+
 // load all environment variales
 dotenv.config();
 
@@ -74,6 +77,6 @@ routes(app);
 server.applyMiddleware({ app, cors: { origin: process.env.CLIENT_BASE_URL } });
 server.installSubscriptionHandlers(httpServer);
 
-app.use('*', (_req: Request, res: Response) => res.status(404).json({ message: 'Unhandled route requested (404)' }));
+app.use('*', (_req: Request, res: Response) => metaRedirect(res, `${process.env.CLIENT_BASE_URL}`));
 
 export { httpServer, app };

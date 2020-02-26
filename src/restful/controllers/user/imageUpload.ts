@@ -26,7 +26,7 @@ const checkFileType = (req, file, cb) => {
   return cb('Images Only');
 };
 
-export const upload = multer({
+const upload = multer({
   storage,
   limits: {
     fileSize: 5242880,
@@ -38,23 +38,28 @@ export const upload = multer({
 
 export const imageUpload = async (req, res) => {
   const { id } = req.decoded;
-  if (req.file === undefined) {
-    return respondWithWarning(res, 400, 'No image selected');
-  }
-  const account = await Account.findOne({
-    where: {id},
-    relations: ['profile'],
-  })
-  const { profile } = account;
-  if (profile) {
-    await getConnection()
-      .createQueryBuilder()
-      .update(Profile)
-      .set({
-        imageUrl: req.file.path,
-      })
-      .where('id = :id', { id: account.profile.id })
-      .execute();
-  }
-  return respondWithSuccess(res, 200, 'Profile image uploaded');
+  upload(req, res, async err => {
+    if (err) {
+      return respondWithWarning(res, 400, err);
+    }
+    if (req.file === undefined) {
+      return respondWithWarning(res, 400, 'No image selected');
+    }
+    const account = await Account.findOne({
+      where: {id},
+      relations: ['profile'],
+    });
+    const { profile } = account;
+    if (profile) {
+      await getConnection()
+        .createQueryBuilder()
+        .update(Profile)
+        .set({
+          imageUrl: req.file.path,
+        })
+        .where('id = :id', { id: account.profile.id })
+        .execute();
+    }
+    return respondWithSuccess(res, 200, 'Profile image uploaded');
+  });
 };

@@ -16,7 +16,7 @@ import forgotPassword from '../controllers/user/forgotPassword';
 import resetPassword from '../controllers/user/resetPassword';
 import verifyResetPasswordToken from '../controllers/user/verifyResetPasswordToken';
 import authStatus from '../controllers/user/authStatus';
-import { upload, imageUpload } from '../controllers/user/imageUpload';
+import { imageUpload } from '../controllers/user/imageUpload';
 
 // Controllers email
 import sendEmailVerification from '../controllers/email/sendEmailVerification';
@@ -143,7 +143,6 @@ export default (router: Router) => {
   // user upload image
   router.post(
     '/api/v1/upload-image',
-    upload,
     imageUpload,
   );
 };

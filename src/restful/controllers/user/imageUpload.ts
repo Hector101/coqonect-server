@@ -42,15 +42,14 @@ export const imageUpload = async (req, res) => {
     if (err) {
       return respondWithWarning(res, 400, err);
     }
-    if (req.file === undefined) {
+    if (!req.file) {
       return respondWithWarning(res, 400, 'No image selected');
     }
     const account = await Account.findOne({
       where: {id},
       relations: ['profile'],
     });
-    const { profile } = account;
-    if (profile) {
+    if (account) {
       await getConnection()
         .createQueryBuilder()
         .update(Profile)

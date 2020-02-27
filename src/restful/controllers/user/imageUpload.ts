@@ -15,6 +15,8 @@ const isDevEnv = process.env.NODE_ENV === 'development'
   ? 'http://api.coqonect.com:5000'
   : 'https://coqonect.com';
 
+const MAX_IMAGE_SIZE = 5242880;
+
 const storage = multer.diskStorage({
   destination: './public/profile',
   filename: (req, file, cb) => {
@@ -36,7 +38,7 @@ const checkFileType = (req, file, cb) => {
 const upload = multer({
   storage,
   limits: {
-    fileSize: 5242880,
+    fileSize: MAX_IMAGE_SIZE,
   },
   fileFilter: (req, file, cb) => {
     checkFileType(req, file, cb);
@@ -52,23 +54,24 @@ export const imageUpload = async (req, res) => {
     if (!req.file) {
       return respondWithWarning(res, 400, 'No image selected');
     }
-    if (req.file.size > 5242880) {
+    if (req.file.size > MAX_IMAGE_SIZE) {
       return respondWithWarning(res, 400, 'File too large');
     }
     const account = await Account.findOne({
       where: {id},
       relations: ['profile'],
     });
-    if (account) {
-      await getConnection()
-        .createQueryBuilder()
-        .update(Profile)
-        .set({
-          imageUrl: `${isDevEnv}/${req.file.path.toLowerCase()}`,
-        })
-        .where('id = :id', { id: account.profile.id })
-        .execute();
+    if (!account) {
+      return respondWithWarning(res, 403, 'Upload not allowed');
     }
+    await getConnection()
+      .createQueryBuilder()
+      .update(Profile)
+      .set({
+        imageUrl: `${isDevEnv}/${req.file.path.toLowerCase()}`,
+      })
+      .where('id = :id', { id: account.profile.id })
+      .execute();
     return respondWithSuccess(res, 200, 'Profile image uploaded');
   });
 };

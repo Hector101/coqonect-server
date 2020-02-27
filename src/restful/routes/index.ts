@@ -36,6 +36,7 @@ import resetPasswordValidation from '../validations/resetPasswordValidation';
 import ValidationMiddleware from '../middleWares/ValidationMiddleware';
 import checkPermissions from '../middleWares/checkPermissions';
 import isAdmin from '../middleWares/isAdmin';
+import isAuthorized from '../middleWares/isAuthorized';
 
 export default (router: Router) => {
   // Local Strategy Login user
@@ -143,6 +144,7 @@ export default (router: Router) => {
   // user upload image
   router.post(
     '/api/v1/upload-image',
+    isAuthorized,
     imageUpload,
   );
 };

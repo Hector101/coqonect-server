@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import multer from 'multer';
 import path from 'path';
 import { getConnection } from 'typeorm';
@@ -8,6 +9,12 @@ import { Account, Profile } from '../../../db';
 // libs
 import { respondWithSuccess, respondWithWarning } from '../../../lib/httpResponse';
 
+dotenv.config();
+
+const isDevEnv = process.env.NODE_ENV === 'development'
+  ? 'http://api.coqonect.com:5000'
+  : 'https://coqonect.com';
+
 const storage = multer.diskStorage({
   destination: './public/profile',
   filename: (req, file, cb) => {
@@ -17,7 +24,7 @@ const storage = multer.diskStorage({
 
 const checkFileType = (req, file, cb) => {
   const fileTypes = /jpeg|jpg|png/;
-  const extName = fileTypes.test(path.extname(file.originalname));
+  const extName = fileTypes.test(path.extname(file.originalname.toLowerCase()));
   const mimeType = fileTypes.test(file.mimetype);
 
   if (mimeType && extName) {
@@ -45,6 +52,9 @@ export const imageUpload = async (req, res) => {
     if (!req.file) {
       return respondWithWarning(res, 400, 'No image selected');
     }
+    if (req.file.size > 5242880) {
+      return respondWithWarning(res, 400, 'File too large');
+    }
     const account = await Account.findOne({
       where: {id},
       relations: ['profile'],
@@ -54,7 +64,7 @@ export const imageUpload = async (req, res) => {
         .createQueryBuilder()
         .update(Profile)
         .set({
-          imageUrl: req.file.path,
+          imageUrl: `${isDevEnv}/${req.file.path.toLowerCase()}`,
         })
         .where('id = :id', { id: account.profile.id })
         .execute();

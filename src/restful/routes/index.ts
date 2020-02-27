@@ -16,6 +16,7 @@ import forgotPassword from '../controllers/user/forgotPassword';
 import resetPassword from '../controllers/user/resetPassword';
 import verifyResetPasswordToken from '../controllers/user/verifyResetPasswordToken';
 import authStatus from '../controllers/user/authStatus';
+import { imageUpload } from '../controllers/user/imageUpload';
 
 // Controllers email
 import sendEmailVerification from '../controllers/email/sendEmailVerification';
@@ -35,6 +36,7 @@ import resetPasswordValidation from '../validations/resetPasswordValidation';
 import ValidationMiddleware from '../middleWares/ValidationMiddleware';
 import checkPermissions from '../middleWares/checkPermissions';
 import isAdmin from '../middleWares/isAdmin';
+import isAuthorized from '../middleWares/isAuthorized';
 
 export default (router: Router) => {
   // Local Strategy Login user
@@ -137,5 +139,12 @@ export default (router: Router) => {
   router.get(
     '/api/v1/auth-status',
     authStatus,
+  );
+
+  // user upload image
+  router.post(
+    '/api/v1/upload-image',
+    isAuthorized,
+    imageUpload,
   );
 };

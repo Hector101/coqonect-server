@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import multer, { FileFilterCallback, MulterError } from 'multer';
 import path from 'path';
 import { getConnection } from 'typeorm';
+import Jimp from 'jimp';
 
 // database models
 import { Account, Profile } from '../../../db';
@@ -19,7 +20,7 @@ const isDevEnv = process.env.NODE_ENV === 'development'
   ? 'http://api.coqonect.com:5000'
   : 'https://coqonect.com';
 
-const MAX_IMAGE_SIZE = 5242880;
+const MAX_IMAGE_SIZE = 1048576;
 
 const storage = multer.diskStorage({
   destination: './public/profile',
@@ -60,7 +61,19 @@ export const imageUpload = async (req: IRequestWithAuthStatus, res: Response) =>
       return respondWithWarning(res, 400, 'No image selected');
     }
     if (req.file.size > MAX_IMAGE_SIZE) {
-      return respondWithWarning(res, 400, 'File too large');
+      return respondWithWarning(res, 400, 'Image size greater than 1MB');
+    }
+
+    // let modified = false;
+
+    try {
+      const image = await Jimp.read(req.file.path);
+
+      image.resize(128, 128)
+      .quality(100)
+      .write(req.file.path);
+    } catch (err) {
+      return respondWithWarning(res, 400, 'Error occurred resizing image, try again.');
     }
     const account = await Account.findOne({
       where: {id},

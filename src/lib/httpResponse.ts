@@ -19,14 +19,15 @@ export function respondWithWarning(res: Response, status: number, message: strin
 }
 
 export function cookieResponse(res: Response, name: string, value: string, httpOnly = false, maxAge: number): void {
-  res.cookie(name, value,
-  {
+  const cookieOptions = {
     maxAge,
     httpOnly,
-    secure: process.env.NODE_ENV === 'production',
     domain: process.env.DOMAIN,
-    sameSite: false,
-  });
+    sameSite: true,
+    ...(process.env.NODE_ENV === 'production' && { secure: true }),
+  };
+
+  res.cookie(name, value, cookieOptions);
 }
 
 export function clearAllCookies(res: Response): void {

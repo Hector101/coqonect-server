@@ -73,7 +73,7 @@ export const imageUpload = async (req: IRequestWithAuthStatus, res: Response) =>
       .createQueryBuilder()
       .update(Profile)
       .set({
-        imageUrl: `${isDevEnv}/${req.file.path.toLowerCase()}`,
+        imageUrl: `${isDevEnv}${req.file.path.toLowerCase().substring(6)}`,
       })
       .where('id = :id', { id: account.profile.id })
       .execute();

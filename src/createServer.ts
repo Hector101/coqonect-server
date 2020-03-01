@@ -71,6 +71,7 @@ app.use(winstonEnvLogger.logger());
 app.use(useragent.express());
 
 app.use(jwtAuthMiddleware);
+app.use(express.static('public'));
 
 routes(app);
 

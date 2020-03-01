@@ -1,5 +1,6 @@
+import { Response, Request } from 'express';
 import dotenv from 'dotenv';
-import multer from 'multer';
+import multer, { FileFilterCallback } from 'multer';
 import path from 'path';
 import { getConnection } from 'typeorm';
 
@@ -8,6 +9,9 @@ import { Account, Profile } from '../../../db';
 
 // libs
 import { respondWithSuccess, respondWithWarning } from '../../../lib/httpResponse';
+
+// interface
+import IRequestWithAuthStatus from '../../../interfaces/IRequestWithAuthStatus';
 
 dotenv.config();
 
@@ -19,12 +23,12 @@ const MAX_IMAGE_SIZE = 5242880;
 
 const storage = multer.diskStorage({
   destination: './public/profile',
-  filename: (req, file, cb) => {
+  filename: (_req, file, cb) => {
     cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
   },
 });
 
-const checkFileType = (req, file, cb) => {
+const checkFileType = (_req: Request, file: Express.Multer.File, cb: FileFilterCallback) => {
   const fileTypes = /jpeg|jpg|png/;
   const extName = fileTypes.test(path.extname(file.originalname.toLowerCase()));
   const mimeType = fileTypes.test(file.mimetype);
@@ -32,7 +36,7 @@ const checkFileType = (req, file, cb) => {
   if (mimeType && extName) {
     return cb(null, true);
   }
-  return cb('Images Only');
+  return cb({ message: 'Images Only', name: 'unknown file type' });
 };
 
 const upload = multer({
@@ -45,9 +49,10 @@ const upload = multer({
   },
 }).single('image');
 
-export const imageUpload = async (req, res) => {
-  const { id } = req.decoded;
-  upload(req, res, async err => {
+export const imageUpload = async (req: IRequestWithAuthStatus, res: Response) => {
+  const id = req.decoded!.id;
+
+  upload(req, res, async (err: string) => {
     if (err) {
       return respondWithWarning(res, 400, err);
     }

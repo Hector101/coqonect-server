@@ -4,6 +4,7 @@ import multer, { FileFilterCallback, MulterError } from 'multer';
 import path from 'path';
 import { getConnection } from 'typeorm';
 import Jimp from 'jimp';
+import uuid from 'uuid';
 
 // database models
 import { Account, Profile } from '../../../db';
@@ -25,7 +26,7 @@ const MAX_IMAGE_SIZE = 1048576;
 const storage = multer.diskStorage({
   destination: './public/profile',
   filename: (_req, file, cb) => {
-    cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
+    cb(null, `${file.fieldname}-${uuid.v4()}${path.extname(file.originalname)}`);
   },
 });
 

@@ -1,6 +1,6 @@
 import { Response, Request } from 'express';
 import dotenv from 'dotenv';
-import multer, { FileFilterCallback } from 'multer';
+import multer, { FileFilterCallback, MulterError } from 'multer';
 import path from 'path';
 import { getConnection } from 'typeorm';
 
@@ -52,9 +52,9 @@ const upload = multer({
 export const imageUpload = async (req: IRequestWithAuthStatus, res: Response) => {
   const id = req.decoded!.id;
 
-  upload(req, res, async (err: string) => {
-    if (err) {
-      return respondWithWarning(res, 400, err);
+  upload(req, res, async (err: MulterError) => {
+    if (err instanceof MulterError) {
+      return respondWithWarning(res, 400, err.message);
     }
     if (!req.file) {
       return respondWithWarning(res, 400, 'No image selected');

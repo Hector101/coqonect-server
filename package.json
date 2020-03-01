@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production yarn build && node build/startServer.js",
     "postinstall": "cross-env NODE_ENV=production yarn build",
-    "prod-deploy": "npm build:js && pm2 restart startServer",
+    "prod-deploy": "npm run build:js && pm2 restart startServer",
     "dev": "cross-env NODE_ENV=development nodemon",
     "tslint": "tslint -c tslint.json 'src/**/*.ts'",
     "type-check:watch": "yarn type-check --watch",

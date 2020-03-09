@@ -10,6 +10,7 @@ import {
 import messageType from '../generics/message';
 import PreSessionType from '../generics/preSession';
 
+import EditProfileResolver from '../../resolvers/client/mutation/EditProfile';
 import AddUserSkillResolver from '../../resolvers/client/mutation/AddUserSkill';
 import NotifyMentorshipRequestResolver from '../../resolvers/client/mutation/NotifyMentorshipRequest';
 import CreateMentorshipRequestResolver from '../../resolvers/client/mutation/CreateMentorshipRequest';
@@ -27,6 +28,16 @@ export default new GraphQLObjectType({
   name: 'ClientMutation',
   description: 'Query Accessible to Admin and Super Admin',
   fields: () => ({
+    editProfile: {
+      type: messageType,
+      args: {
+        fullName: { type: new GraphQLNonNull(GraphQLString) },
+        city: { type: new GraphQLNonNull(GraphQLString) },
+        country: { type: new GraphQLNonNull(GraphQLString) },
+        bio: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve: EditProfileResolver,
+    },
     addUserSkill: {
       type: messageType,
       args: {

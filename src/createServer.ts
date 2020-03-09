@@ -78,6 +78,6 @@ routes(app);
 server.applyMiddleware({ app, cors: { origin: process.env.CLIENT_BASE_URL } });
 server.installSubscriptionHandlers(httpServer);
 
-app.use('*', (_req: Request, res: Response) => metaRedirect(res, `${process.env.CLIENT_BASE_URL}`));
+app.use('*', (req: Request, res: Response) => metaRedirect(req, res, `${process.env.CLIENT_BASE_URL}`));
 
 export { httpServer, app };

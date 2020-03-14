@@ -9,7 +9,7 @@ const getEnvVariables = {
    databasename: isDevEnv ? process.env.DB_DATABASE_DEV : process.env.DB_DATABASE_PROD,
    logging: isDevEnv ? true : false,
    synchronize: isDevEnv ? true : false,
-}
+};
 
 const entities = isDevEnv ? "src/db/entity/**/*.ts" : "build/db/entity/**/*.js";
 

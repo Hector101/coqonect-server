@@ -19,10 +19,6 @@ The following should be installed in your machine
 * Create a `.env` file and request for values from ADMIN
 * Start the application on development mode by running `yarn dev`
 
-## Seed necesary data to database
-* Follow the steps on this PR to seed data to your database - [Link Here](https://gitlab.com/hector101/coqonect-server/merge_requests/19/diffs#e3a287efc0b918466d8addf921efc202a542263e)
-
-
 ## How To Contribute
 Kindly refer to the guide above to setup, and reachout to admin for further instructions
 

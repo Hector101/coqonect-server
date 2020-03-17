@@ -11,6 +11,7 @@ import messageType from '../generics/message';
 import PreSessionType from '../generics/preSession';
 
 import EditProfileResolver from '../../resolvers/client/mutation/EditProfile';
+import ChangePasswordResolver from '../../resolvers/client/mutation/ChangePassword';
 import AddUserSkillResolver from '../../resolvers/client/mutation/AddUserSkill';
 import NotifyMentorshipRequestResolver from '../../resolvers/client/mutation/NotifyMentorshipRequest';
 import CreateMentorshipRequestResolver from '../../resolvers/client/mutation/CreateMentorshipRequest';
@@ -37,6 +38,14 @@ export default new GraphQLObjectType({
         bio: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve: EditProfileResolver,
+    },
+    changePassword: {
+      type: messageType,
+      args: {
+        oldPassword: { type: new GraphQLNonNull(GraphQLString) },
+        newPassword: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve: ChangePasswordResolver,
     },
     addUserSkill: {
       type: messageType,

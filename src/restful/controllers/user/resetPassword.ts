@@ -8,7 +8,7 @@ import { Account } from '../../../db';
 // libs
 import { respondWithSuccess, respondWithWarning } from '../../../lib/httpResponse';
 import { verifyResetPassword } from '../../../lib/verifyToken';
-import { hashtPassword } from '../../../lib/passwordOps';
+import { hashPassword } from '../../../lib/passwordOps';
 
 async function resetPassword(req: Request, res: Response) {
   const { token, password } = req.body;
@@ -28,7 +28,7 @@ async function resetPassword(req: Request, res: Response) {
       .createQueryBuilder()
       .update(Account)
       .set({
-        password: hashtPassword(password),
+        password: hashPassword(password),
       })
       .where('id = :id', { id })
       .execute();

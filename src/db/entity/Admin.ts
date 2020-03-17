@@ -8,7 +8,7 @@ import {
   BaseEntity,
  } from 'typeorm';
 
- import { hashtPassword } from '../../lib/passwordOps';
+ import { hashPassword } from '../../lib/passwordOps';
 
 @Entity('Admin')
 export default class Admin extends BaseEntity {
@@ -47,6 +47,6 @@ export default class Admin extends BaseEntity {
 
   @BeforeInsert()
   hashPasswordBeforeInsert() {
-    this.password = hashtPassword(this.password);
+    this.password = hashPassword(this.password);
   }
 }

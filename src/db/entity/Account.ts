@@ -11,7 +11,7 @@ import {
   JoinColumn,
  } from 'typeorm';
 
- import { hashtPassword } from '../../lib/passwordOps';
+ import { hashPassword } from '../../lib/passwordOps';
 
  import Profile from './Profile';
  import UserSkill from './UserSkill';
@@ -91,6 +91,6 @@ export default class Account extends BaseEntity {
 
   @BeforeInsert()
   hashPasswordBeforeInsert() {
-    this.password = hashtPassword(this.password);
+    this.password = hashPassword(this.password);
   }
 }

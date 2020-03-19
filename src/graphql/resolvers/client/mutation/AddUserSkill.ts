@@ -8,11 +8,15 @@ import { DUPLICATE_CODE } from '../../../../lib/constants';
 // interface
 import ResolverType from '../../../../interfaces/IResolverType';
 
-const AddUserSkill: ResolverType = async (_parent, { skillId }, { req: { decoded: { id: accountId } } }) => {
+const AddUserSkill: ResolverType = async (_parent,
+  { skillId, description },
+  { req: { decoded: { id: accountId } } }) => {
+    console.log('PPPPPPPPP<<<<<<<<<<<<<<<<<<<<<<<<<<<<', skillId, description)
   try {
     const userSkill = UserSkill.create({
       skillId,
       accountId,
+      description,
     });
     await userSkill.save();
 

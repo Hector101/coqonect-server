@@ -14,7 +14,7 @@ const UserSkills: ResolverType = async ({ id }) => {
     });
 
     const skills = userSkills.map(userSkill => {
-      return { ...userSkill.skill, verified: userSkill.verified };
+      return { ...userSkill.skill, verified: userSkill.verified, description: userSkill.description };
     });
 
     return skills;

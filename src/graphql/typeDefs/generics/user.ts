@@ -6,7 +6,7 @@ import {
   GraphQLList,
 } from 'graphql';
 
-import skillType from './skill';
+import userSkillType from './userSkill';
 import ProfileType from './profile';
 import RatingType from './rating';
 
@@ -37,7 +37,7 @@ export default new GraphQLObjectType({
       type: RatingType,
     },
     skills: {
-      type: new GraphQLList(skillType),
+      type: new GraphQLList(userSkillType),
       resolve: UserSkillsResolver,
     },
   },

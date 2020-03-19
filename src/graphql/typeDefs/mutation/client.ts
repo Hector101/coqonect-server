@@ -51,6 +51,7 @@ export default new GraphQLObjectType({
       type: messageType,
       args: {
         skillId: { type: new GraphQLNonNull(GraphQLID) },
+        description: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve: AddUserSkillResolver,
     },

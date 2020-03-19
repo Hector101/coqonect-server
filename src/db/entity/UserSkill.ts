@@ -27,6 +27,9 @@ export default class UserSkill extends BaseEntity {
   @Column({ default: false })
   verified: boolean;
 
+  @Column('text', { nullable: true })
+  description: string;
+
   @ManyToOne(_type => Account, account => account.userSkills)
   account: Account;
 

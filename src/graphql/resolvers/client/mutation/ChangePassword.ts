@@ -36,7 +36,7 @@ const ChangePassword: ResolverType = async (_parent,
       error: e,
     });
 
-    throw new Error(e);
+    throw new Error(e.message);
   }
 };
 

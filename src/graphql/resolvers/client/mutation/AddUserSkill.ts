@@ -11,7 +11,6 @@ import ResolverType from '../../../../interfaces/IResolverType';
 const AddUserSkill: ResolverType = async (_parent,
   { skillId, description },
   { req: { decoded: { id: accountId } } }) => {
-    console.log('PPPPPPPPP<<<<<<<<<<<<<<<<<<<<<<<<<<<<', skillId, description)
   try {
     const userSkill = UserSkill.create({
       skillId,

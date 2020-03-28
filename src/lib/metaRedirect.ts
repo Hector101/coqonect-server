@@ -1,9 +1,9 @@
-import { Response, Request } from 'express';
+import { Response } from 'express';
 
-const metaRedirect = (req: Request, res: Response, host: string) => {
+const metaRedirect = (res: Response, host: string) => {
   return res.status(200).send(`
     <html>
-      <head><meta http-equiv="refresh" content="0; url=${host}${req.originalUrl}" /></head>
+      <head><meta http-equiv="refresh" content="0; url=${host}" /></head>
       <body></body>
     </html>
   `);

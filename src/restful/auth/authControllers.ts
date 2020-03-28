@@ -44,14 +44,14 @@ function localAuthentication(
 }
 
 function socialAuthentication(
-  req: Request,
+  _req: Request,
   res: Response,
   error: string,
   success: IAuthPayload,
 ) {
   if (error) {
     clearAllCookies(res);
-    return metaRedirect(req, res, `${process.env.CLIENT_BASE_URL}/login`);
+    return metaRedirect(res, `${process.env.CLIENT_BASE_URL}/login`);
   }
 
   const { token, refreshToken } = success.payload;
@@ -59,7 +59,7 @@ function socialAuthentication(
   cookieResponse(res, '__cnt', token, true, 604800000);
   cookieResponse(res, '__crt', refreshToken, true, 604800000);
 
-  return metaRedirect(req, res, `${process.env.CLIENT_BASE_URL}/dashboard`);
+  return metaRedirect(res, `${process.env.CLIENT_BASE_URL}/dashboard`);
 }
 
 // LOCAL LOGIN

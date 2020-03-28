@@ -22,9 +22,6 @@ import routes from './restful/routes';
 // GrapQL Schema
 import schema from './graphql/schema';
 
-// lib
-import metaRedirect from './lib/metaRedirect';
-
 // load all environment variales
 dotenv.config();
 
@@ -78,6 +75,6 @@ routes(app);
 server.applyMiddleware({ app, cors: { origin: process.env.CLIENT_BASE_URL } });
 server.installSubscriptionHandlers(httpServer);
 
-app.use('*', (req: Request, res: Response) => metaRedirect(req, res, `${process.env.CLIENT_BASE_URL}`));
+app.use('*', (_req: Request, res: Response) => res.send({ message: 'Fuck off!!!' }));
 
 export { httpServer, app };

@@ -12,12 +12,6 @@ const getEnvVariables = {
 };
 
 const entities = isDevEnv ? "src/db/entity/**/*.ts" : "build/db/entity/**/*.js";
-const migrations = isDevEnv ? "src/db/migration/**/*.ts" : "build/db/migration/**/*.js";
-const subscribers = isDevEnv ? "src/db/subscribers/**/*.ts" : "build/db/subscribers/**/*.js";
-
-const entitiesDir = isDevEnv ? "src/db/entity" : "build/db/entity";
-const migrationsDir = isDevEnv ? "src/db/migration" : "build/db/migration";
-const subscribersDir = isDevEnv ? "src/db/subscriber" : "build/db/subscriber";
 
 module.exports = {
    type: "postgres",
@@ -29,11 +23,15 @@ module.exports = {
    synchronize: getEnvVariables.synchronize,
    logging: getEnvVariables.logging,
    entities: [entities],
-   migrations: [migrations],
-   subscribers: [subscribers],
+   migrations: [
+      "src/db/migration/**/*.ts"
+   ],
+   subscribers: [
+      "src/db/subscriber/**/*.ts"
+   ],
    cli: {
-      entitiesDir,
-      migrationsDir,
-      subscribersDir,
-   },
+      entitiesDir: "src/db/entity",
+      migrationsDir: "src/db/migration",
+      subscribersDir: "src/db/subscriber"
+   }
 }

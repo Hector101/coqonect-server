@@ -10,7 +10,6 @@ import {
 
 // Schema types
 import UserType from '../generics/user';
-import SkillCategoryType from '../generics/skillCategory';
 import mentorshipRequestType from '../generics/mentorshipRequest';
 import preSessionNotificationType from '../generics/mentorshipSessionNotification';
 import mentorToMenteeNotificationType from '../generics/mentorToMenteeNotification';
@@ -18,8 +17,6 @@ import mentorToMenteeNotificationType from '../generics/mentorToMenteeNotificati
 // Resolvers
 import AuthenticatedUserResolver from '../../resolvers/client/query/AuthenticatedUser';
 import UserResolver from '../../resolvers/client/query/User';
-import SkillCategoriesResolver from '../../resolvers/client/query/SkillCategories';
-import SkillCategoryResolver from '../../resolvers/client/query/SkillCategory';
 import MentorshipRequestsResolver from '../../resolvers/client/query/MentorshipRequests';
 import MyMentorshipRequestsResolver from '../../resolvers/client/query/MyMentorshipRequests';
 import PreSessionNotificationsResolver from '../../resolvers/client/query/PreSessionNotifications';
@@ -46,19 +43,6 @@ export default new GraphQLObjectType({
       },
       description: 'Get user details by accountId',
       resolve: UserResolver,
-    },
-    skillCategory: {
-      type: SkillCategoryType,
-      args: {
-        id: { type: new GraphQLNonNull(GraphQLID) },
-      },
-      description: 'Get a single skill category',
-      resolve: SkillCategoryResolver,
-    },
-    skillCategories: {
-      type: new GraphQLList(SkillCategoryType),
-      description: 'Get a list of skill categories',
-      resolve: SkillCategoriesResolver,
     },
     mentorshipRequests: {
       type: new GraphQLList(mentorshipRequestType),

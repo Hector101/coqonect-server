@@ -1,9 +1,9 @@
 INSERT INTO "Profile" ("id", "fullName", "gender", "imageUrl", "bio", "city", "country", "createdAt", "updatedAt") VALUES
-  ('eedba438-b789-4e36-8990-1e4c3be76080', 'john doe', 'male', 'https://picsum.photos/200', '', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
-  ('aedba438-b487-4e36-8990-1e4c3be78061', 'sam doe', 'male', 'https://picsum.photos/200', '', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
-  ('bedba438-b795-4e36-8990-1e4c3be78062', 'anna doe', 'female', 'https://picsum.photos/200', '', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
-  ('cedba438-b444-4e36-8990-1e4c3be78063', 'mary doe', 'female', 'https://picsum.photos/200', '', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
-  ('dedba438-b789-4e49-8990-1e4c3be78864', 'tim doe', 'male', 'https://picsum.photos/200', '', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z');
+  ('eedba438-b789-4e36-8990-1e4c3be76080', 'john doe', 'male', 'https://picsum.photos/200', null, 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
+  ('aedba438-b487-4e36-8990-1e4c3be78061', 'sam doe', 'male', 'https://picsum.photos/200', null, 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
+  ('bedba438-b795-4e36-8990-1e4c3be78062', 'anna doe', 'female', 'https://picsum.photos/200', null, 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
+  ('cedba438-b444-4e36-8990-1e4c3be78063', 'mary doe', 'female', 'https://picsum.photos/200', null, 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
+  ('dedba438-b789-4e49-8990-1e4c3be78864', 'tim doe', 'male', 'https://picsum.photos/200', null, 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z');
 
 INSERT INTO "Account" ("id", "email", "password", "publicId", "blocked", "verified", "createdAt", "updatedAt", "profileId") VALUES
   ('eedba437-b789-4e36-8990-1e4c3be78060', 'test.user1@email.com', '$2y$12$1SgplF4gLt.NJ.hijrX4XOuyHDCUuX06DnzfkhwSdYVRxEXfZj1YW', '0387296939', false, true, '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z', 'eedba438-b789-4e36-8990-1e4c3be76080'),

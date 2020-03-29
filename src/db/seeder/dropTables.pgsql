@@ -10,3 +10,5 @@ DROP TABLE IF EXISTS "SkillCategory" CASCADE;
 DROP TABLE IF EXISTS "UserSkill" CASCADE;
 DROP TABLE IF EXISTS "mentorship_request_mentors__account" CASCADE;
 DROP TABLE IF EXISTS "mentorship_request_other_skills__skill" CASCADE;
+DROP TABLE IF EXISTS "MentorToMenteeNotification" CASCADE;
+DROP TABLE IF EXISTS "Rating" CASCADE;

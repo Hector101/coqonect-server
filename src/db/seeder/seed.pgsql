@@ -1,9 +1,9 @@
 INSERT INTO "Profile" ("id", "fullName", "gender", "imageUrl", "bio", "city", "country", "createdAt", "updatedAt") VALUES
-  ('eedba438-b789-4e36-8990-1e4c3be76080', 'john doe', 'male', 'https://picsum.photos/200', 'some really cool bio', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
-  ('aedba438-b487-4e36-8990-1e4c3be78061', 'sam doe', 'male', 'https://picsum.photos/200', 'some really cool bio', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
-  ('bedba438-b795-4e36-8990-1e4c3be78062', 'anna doe', 'female', 'https://picsum.photos/200', 'some really cool bio', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
-  ('cedba438-b444-4e36-8990-1e4c3be78063', 'mary doe', 'female', 'https://picsum.photos/200', 'some really cool bio', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
-  ('dedba438-b789-4e49-8990-1e4c3be78864', 'tim doe', 'male', 'https://picsum.photos/200', 'some really cool bio', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z');
+  ('eedba438-b789-4e36-8990-1e4c3be76080', 'john doe', 'male', 'https://picsum.photos/200', '', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
+  ('aedba438-b487-4e36-8990-1e4c3be78061', 'sam doe', 'male', 'https://picsum.photos/200', '', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
+  ('bedba438-b795-4e36-8990-1e4c3be78062', 'anna doe', 'female', 'https://picsum.photos/200', '', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
+  ('cedba438-b444-4e36-8990-1e4c3be78063', 'mary doe', 'female', 'https://picsum.photos/200', '', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z'),
+  ('dedba438-b789-4e49-8990-1e4c3be78864', 'tim doe', 'male', 'https://picsum.photos/200', '', 'Lagos', 'NG', '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z');
 
 INSERT INTO "Account" ("id", "email", "password", "publicId", "blocked", "verified", "createdAt", "updatedAt", "profileId") VALUES
   ('eedba437-b789-4e36-8990-1e4c3be78060', 'test.user1@email.com', '$2y$12$1SgplF4gLt.NJ.hijrX4XOuyHDCUuX06DnzfkhwSdYVRxEXfZj1YW', '0387296939', false, true, '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z', 'eedba438-b789-4e36-8990-1e4c3be76080'),
@@ -33,7 +33,7 @@ INSERT INTO "Skill" ("id", "name", "categoryId") VALUES
   ('2d1fb9b8-95dd-456f-a9e8-b4b7e5deda2b', 'Data Science', '864ff6fc-50f2-4d9a-b299-f955b0d19e6f'),
   ('a753e70c-5951-4550-9da5-b239ae412136', 'NextJS', '864ff6fc-50f2-4d9a-b299-f955b0d19e6f'),
   ('a7a2bb20-a33d-460c-901b-9506b6a8ed7c', 'Algorithms', '864ff6fc-50f2-4d9a-b299-f955b0d19e6f'),
-  ('789e0b33-69c1-4881-9eb3-59b82a4b50e4', 'Advanced HTML/CSS', '864ff6fc-50f2-4d9a-b299-f955b0d19e6f')
+  ('789e0b33-69c1-4881-9eb3-59b82a4b50e4', 'Advanced HTML/CSS', '864ff6fc-50f2-4d9a-b299-f955b0d19e6f'),
   ('7ec20d81-a9f6-43f2-827c-532d8e683061', 'NodeJS', '864ff6fc-50f2-4d9a-b299-f955b0d19e6f'),
   ('ca05ab9e-2971-480d-96c9-f83116595765', 'Rust', '864ff6fc-50f2-4d9a-b299-f955b0d19e6f'),
   ('f222ef95-48a9-4d63-aca4-1816b8858c07', 'Flutter/Dart', '864ff6fc-50f2-4d9a-b299-f955b0d19e6f'),

@@ -74,9 +74,6 @@ INSERT INTO "Skill" ("id", "name", "categoryId") VALUES
   ('c88ca54b-45db-4cf3-8e52-4c7279ae7e4a', 'Mockup Design', '797aae41-f842-47ef-913a-32e60a92acf5'),
   ('11d2471b-f4e1-4a2c-98b8-1a4f63376a34', 'Engineering Design', '797aae41-f842-47ef-913a-32e60a92acf5');
 
-
-
-
 INSERT INTO "UserSkill" ("id", "skillId", "accountId") VALUES
   ('cb987eb0-a58d-f943-ba7e-8f11575c83a2', 'cb987eb0-a58d-439f-ba7e-8f11575c83a2', 'eedba437-b789-4e36-8990-1e4c3be78060'),
   ('206fd035-c7b8-33f4-be33-9a4c9de81e64', '206fd035-c7b8-4f33-be33-9a4c9de81e64', '6f0b6584-4235-4306-89ab-0b2445da11a4'),

@@ -17,10 +17,10 @@ INSERT INTO "Admin" ("id", "fullName", "email", "password", "role", "blocked", "
   ('6f0b6584-4235-4306-89ab-0b2445da11a4', 'CoQonect Admin', 'admin@coqonect.com', '$2y$10$olt4/LD9BZdK/IgoX0ZkYOg0DysMf/hxnG6VFRfiQXmgvnZEBVp9C', 'admin', false, true, '2019-01-06T10:04:46.419Z', '2019-01-06T10:04:46.419Z');
 
 INSERT INTO "SkillCategory" ("id", "name") VALUES
-  ('864ff6fc-50f2-4d9a-b299-f955b0d19e6f', 'programming'),
-  ('3439f2db-626f-4508-8c35-fc6c72809ae4', 'communication'),
-  ('b6f22a28-6820-4984-bc9d-75d3ea233b6b', 'language'),
-  ('797aae41-f842-47ef-913a-32e60a92acf5', 'design');
+  ('864ff6fc-50f2-4d9a-b299-f955b0d19e6f', 'Programming'),
+  ('3439f2db-626f-4508-8c35-fc6c72809ae4', 'Communication'),
+  ('b6f22a28-6820-4984-bc9d-75d3ea233b6b', 'Language'),
+  ('797aae41-f842-47ef-913a-32e60a92acf5', 'Designs');
 
 INSERT INTO "Skill" ("id", "name", "categoryId") VALUES
   ('cb987eb0-a58d-439f-ba7e-8f11575c83a2', 'JavaScript', '864ff6fc-50f2-4d9a-b299-f955b0d19e6f'),

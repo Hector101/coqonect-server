@@ -52,6 +52,9 @@ export default new GraphQLObjectType({
       args: {
         skillId: { type: new GraphQLNonNull(GraphQLID) },
         description: { type: new GraphQLNonNull(GraphQLString) },
+        evidence: { type: new GraphQLNonNull(GraphQLString) },
+        months: { type: new GraphQLNonNull(GraphQLInt) },
+        years: { type: new GraphQLNonNull(GraphQLInt) },
       },
       resolve: AddUserSkillResolver,
     },

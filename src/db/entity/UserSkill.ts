@@ -30,6 +30,15 @@ export default class UserSkill extends BaseEntity {
   @Column('text', { nullable: true })
   description: string;
 
+  @Column({ type: 'text', nullable: true })
+  evidence: string;
+
+  @Column({ type: 'int', nullable: true })
+  years: number;
+
+  @Column({ type: 'int', nullable: true })
+  months: number;
+
   @ManyToOne(_type => Account, account => account.userSkills)
   account: Account;
 

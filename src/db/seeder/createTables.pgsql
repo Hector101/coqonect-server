@@ -86,6 +86,9 @@ CREATE TABLE IF NOT EXISTS "UserSkill" (
   "accountId" uuid NOT NULL REFERENCES "Account"(id),
   verified boolean NOT NULL DEFAULT false,
   description text,
+  evidence text,
+  years integer,
+  months integer,
   CONSTRAINT "UQ_962a594a1c0b7a96a3ec0f06e96" UNIQUE ("skillId", "accountId")
 );
 

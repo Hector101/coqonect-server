@@ -1,4 +1,5 @@
 import winstonEnvLogger from 'winston-env-logger';
+import _omit from 'lodash/omit';
 
 import { UserSkill } from '../../../../db';
 
@@ -14,7 +15,10 @@ const UserSkills: ResolverType = async ({ id }) => {
     });
 
     const skills = userSkills.map(userSkill => {
-      return { ...userSkill.skill, verified: userSkill.verified, description: userSkill.description };
+      return {
+        ...(_omit(userSkill, 'skill')),
+        ...userSkill.skill,
+      };
     });
 
     return skills;

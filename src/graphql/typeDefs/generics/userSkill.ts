@@ -19,7 +19,16 @@ export default new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLBoolean),
     },
     description: {
-      type: new GraphQLNonNull(GraphQLBoolean),
+      type: new GraphQLNonNull(GraphQLString),
+    },
+    evidence: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
+    years: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
+    months: {
+      type: new GraphQLNonNull(GraphQLString),
     },
   },
 });

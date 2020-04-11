@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
-import cors from 'cors';
+import cors, { CorsOptions } from 'cors';
 import winstonEnvLogger from 'winston-env-logger';
 import useragent from 'express-useragent';
 import { ApolloServer, PubSub } from 'apollo-server-express';
@@ -47,11 +47,19 @@ const server = new ApolloServer({
   },
 });
 
-app.use(cors({
-  origin: process.env.CLIENT_BASE_URL,
-  methods: ['GET', 'PUT', 'POST'],
+const whitelist = [process.env.CLIENT_BASE_URL];
+const corsOptions: CorsOptions = {
+  origin(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || origin?.includes('netlify.com')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST'],
   credentials: true,
-}));
+};
+app.use(cors(corsOptions));
 
 app.use(helmet());
 app.use(helmet.permittedCrossDomainPolicies());

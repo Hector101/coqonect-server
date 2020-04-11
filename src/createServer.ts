@@ -50,7 +50,7 @@ const server = new ApolloServer({
 const whitelist = [process.env.CLIENT_BASE_URL];
 const corsOptions: CorsOptions = {
   origin(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || origin?.includes('netlify.com')) {
+    if (whitelist.indexOf(origin) !== -1 || origin && origin.includes('netlify.com')) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));

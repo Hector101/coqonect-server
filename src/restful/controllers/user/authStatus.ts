@@ -6,6 +6,9 @@ import { respondWithSuccess, respondWithWarning } from '../../../lib/httpRespons
 import IRequestWithAuthStatus from '../../../interfaces/IRequestWithAuthStatus';
 
 const authStatus = async (req: IRequestWithAuthStatus, res: Response) => {
+  if (req.isAdmin) {
+    return respondWithSuccess(res, 207, 'Authenticated');
+  }
   if (req.isAuthorized) {
     return respondWithSuccess(res, 200, 'Authenticated');
   }

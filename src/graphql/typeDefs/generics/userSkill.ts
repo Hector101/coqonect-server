@@ -3,7 +3,6 @@ import {
   GraphQLID,
   GraphQLString,
   GraphQLNonNull,
-  GraphQLBoolean,
 } from 'graphql';
 
 export default new GraphQLObjectType({
@@ -15,8 +14,8 @@ export default new GraphQLObjectType({
     name: {
       type: new GraphQLNonNull(GraphQLString),
     },
-    verified: {
-      type: new GraphQLNonNull(GraphQLBoolean),
+    status: {
+      type: new GraphQLNonNull(GraphQLString),
     },
     description: {
       type: new GraphQLNonNull(GraphQLString),

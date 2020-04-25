@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS "UserSkill" (
   id uuid PRIMARY KEY,
   "skillId" uuid NOT NULL REFERENCES "Skill"(id),
   "accountId" uuid NOT NULL REFERENCES "Account"(id),
-  verified boolean NOT NULL DEFAULT false,
+  status character varying NOT NULL DEFAULT 'pending'::character varying,
   description text,
   evidence text,
   years integer,

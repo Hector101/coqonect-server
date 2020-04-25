@@ -24,8 +24,8 @@ export default class UserSkill extends BaseEntity {
   @Column('uuid')
   accountId: string;
 
-  @Column({ default: false })
-  verified: boolean;
+  @Column({ default: 'pending' })
+  status: string;
 
   @Column('text', { nullable: true })
   description: string;

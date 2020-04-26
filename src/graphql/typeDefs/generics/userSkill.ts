@@ -29,5 +29,8 @@ export default new GraphQLObjectType({
     months: {
       type: new GraphQLNonNull(GraphQLString),
     },
+    accountId: {
+      type: new GraphQLNonNull(GraphQLID),
+    },
   },
 });

@@ -33,9 +33,9 @@ const FetchMentors: ResolverType = async (_parent,
       .andWhere(new Brackets(qb => {
         if (skillId) {
           return qb.where('userSkills.skillId = :skillId', { skillId })
-            .andWhere('userSkills.verified = :verified', { verified: true });
+            .andWhere('userSkills.status = :status', { status: 'verified' });
         }
-        return qb.where('userSkills.verified = :verified', { verified: true });
+        return qb.where('userSkills.verified = :status', { status: 'verified' });
       }))
       .take(take)
       .skip(skip)

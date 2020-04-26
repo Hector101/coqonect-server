@@ -18,7 +18,7 @@ const MentorshipRequestsResolver: ResolverType = async (_,
     });
 
     const skillIds = userSkills
-      .filter(userSkill => userSkill.verified === true)
+      .filter(userSkill => userSkill.status === 'verified')
       .map(userSkill => userSkill.skillId);
 
     if (!skillIds.length) {

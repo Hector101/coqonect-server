@@ -16,8 +16,8 @@ const UserSkills: ResolverType = async ({ id }) => {
 
     const skills = userSkills.map(userSkill => {
       return {
-        ...(_omit(userSkill, 'skill')),
         ...userSkill.skill,
+        ...(_omit(userSkill, 'skill')),
       };
     });
 

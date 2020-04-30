@@ -29,7 +29,7 @@ async function forgotPassword(req: Request, res: Response) {
 
       await sendToEmail(`"${fullName}" <${email}>`)((process.env.SENDGRID_RESET_PASSWORD_TEMPLATE_ID as string), {
         fullName,
-        verificationLink: `${process.env.CLIENT_BASE_URL}/reset-password?t=${token}`,
+        verificationLink: `${process.env.CLIENT_BASE_URL}/auth/reset-password?t=${token}`,
       });
     // }
 

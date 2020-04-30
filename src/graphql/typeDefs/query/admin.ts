@@ -28,6 +28,12 @@ export default new GraphQLObjectType({
         status: {
           type: GraphQLString,
         },
+        email: {
+          type: GraphQLString,
+        },
+        name: {
+          type: GraphQLString,
+        },
         take: {
           type: new GraphQLNonNull(GraphQLInt),
         },

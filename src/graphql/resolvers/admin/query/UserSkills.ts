@@ -7,13 +7,16 @@ import { UserSkill } from '../../../../db';
 // interface
 import ResolverType from '../../../../interfaces/IResolverType';
 
-const UserSkills: ResolverType = async (_parent, { status, take, skip }) => {
+const UserSkills: ResolverType = async (_parent, { status, name, email, take, skip }) => {
   try {
     const userSkills = await getRepository(UserSkill)
       .createQueryBuilder('userSkills')
       .leftJoinAndSelect('userSkills.skill', 'skill')
       .leftJoinAndSelect('userSkills.account', 'account')
+      .leftJoinAndSelect('account.profile', 'profile')
       .where('userSkills.status = :status', { status: status || 'pending' })
+      .andWhere(email ? 'account.email = :email' : '1=1', { email })
+      .andWhere(name ? 'profile.fullName like :name' : '1=1', { name: `%${name}%` })
       .take(take)
       .skip(skip)
       .getMany();

@@ -34,6 +34,9 @@ export default new GraphQLObjectType({
         name: {
           type: GraphQLString,
         },
+        skillName: {
+          type: GraphQLString,
+        },
         take: {
           type: new GraphQLNonNull(GraphQLInt),
         },

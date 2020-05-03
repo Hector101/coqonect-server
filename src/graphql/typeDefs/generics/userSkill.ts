@@ -5,6 +5,8 @@ import {
   GraphQLNonNull,
 } from 'graphql';
 
+import ProfileType from './profile';
+
 export default new GraphQLObjectType({
   name: 'userSkill',
   fields: {
@@ -31,6 +33,9 @@ export default new GraphQLObjectType({
     },
     accountId: {
       type: new GraphQLNonNull(GraphQLID),
+    },
+    profile: {
+      type: new GraphQLNonNull(ProfileType),
     },
   },
 });

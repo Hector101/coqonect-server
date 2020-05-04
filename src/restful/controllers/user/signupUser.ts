@@ -34,7 +34,7 @@ async function Signup(req: Request, res: Response) {
 
       await sendToEmail(`"${fullName}" <${email}>`)((process.env.SENDGRID_SIGNIP_TEMPLATE_ID as string), {
         fullName,
-        verificationLink: `${process.env.CLIENT_BASE_URL}/email-verification?t=${token}`,
+        verificationLink: `${process.env.CLIENT_BASE_URL}/auth/email-verification?t=${token}`,
       });
     }
 

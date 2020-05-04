@@ -34,7 +34,7 @@ const createAdmin = async (req: Request, res: Response) => {
         fullName: admin.fullName,
         password,
         note: 'Link expires in one(1) hour time',
-        verificationLink: `${process.env.ADMIN_CLIENT_BASE_URL}/verify-email?token=${verificationToken}`,
+        verificationLink: `${process.env.ADMIN_CLIENT_BASE_URL}/admin/verify-email?token=${verificationToken}`,
       });
     }
 

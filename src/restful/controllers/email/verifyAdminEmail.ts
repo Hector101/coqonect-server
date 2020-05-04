@@ -37,7 +37,7 @@ const verifyAdminEmail = async (req: Request, res: Response) => {
     await sendToEmail(`"${fullName}" <${email}>`)
       ((process.env.SENDGRID_VERIFIED_TEMPLATE_ID as string), {
         fullName,
-        loginPage: `${process.env.ADMIN_CLIENT_BASE_URL}/login`,
+        loginPage: `${process.env.CLIENT_BASE_URL}/auth/login`,
       });
 
     return respondWithSuccess(res, 200, 'Email Verification Completed Successfully, Proceed to Login');

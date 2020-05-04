@@ -43,7 +43,7 @@ const verifyEmail = async (req: Request, res: Response) => {
     const { profile: { fullName }, email } = account;
     await sendToEmail(`"${fullName}" <${email}>`)((process.env.SENDGRID_VERIFIED_TEMPLATE_ID as string), {
       fullName,
-      loginPage: `${process.env.CLIENT_BASE_URL}/login`,
+      loginPage: `${process.env.CLIENT_BASE_URL}/auth/login`,
     });
 
     return respondWithSuccess(res, 200, 'Email Verification Completed Successfully, Proceed to Login');

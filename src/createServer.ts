@@ -48,17 +48,15 @@ const server = new ApolloServer({
 });
 
 const corsOptions: CorsOptions = {
-  origin: process.env.CLIENT_BASE_URL,
-  methods: ['GET', 'POST'],
+  origin: true,
   credentials: true,
+  optionsSuccessStatus: 200,
 };
-app.use(cors(corsOptions));
 
-app.use(helmet());
-app.use(helmet.permittedCrossDomainPolicies());
-app.use(compression());
 app.set('trust proxy', 1);
-
+app.use(cors(corsOptions));
+app.use(helmet());
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -73,7 +71,7 @@ app.use(express.static('public'));
 
 routes(app);
 
-server.applyMiddleware({ app, cors: { origin: process.env.CLIENT_BASE_URL } });
+server.applyMiddleware({ app, cors: { origin: true } });
 server.installSubscriptionHandlers(httpServer);
 
 app.use('*', (_req: Request, res: Response) => res.send({ message: 'Fuck off!!!' }));

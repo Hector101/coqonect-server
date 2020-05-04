@@ -22,7 +22,6 @@ export function cookieResponse(res: Response, name: string, value: string, httpO
   const cookieOptions = {
     maxAge,
     httpOnly,
-    domain: process.env.DOMAIN,
     sameSite: true,
     ...(process.env.NODE_ENV === 'production' && { secure: true }),
   };
@@ -31,6 +30,6 @@ export function cookieResponse(res: Response, name: string, value: string, httpO
 }
 
 export function clearAllCookies(res: Response): void {
-  res.clearCookie('__cnt', { domain: process.env.DOMAIN });
-  res.clearCookie('__crt', { domain: process.env.DOMAIN });
+  res.clearCookie('__cnt');
+  res.clearCookie('__crt');
 }

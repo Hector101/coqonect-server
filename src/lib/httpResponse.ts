@@ -22,7 +22,7 @@ export function cookieResponse(res: Response, name: string, value: string, httpO
   const cookieOptions = {
     maxAge,
     httpOnly,
-    sameSite: true,
+    sameSite: false,
     ...(process.env.NODE_ENV === 'production' && { secure: true }),
   };
 

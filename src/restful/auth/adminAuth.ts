@@ -8,7 +8,7 @@ import { Admin } from '../../db';
 
 // libs
 import { isValidPassword } from '../../lib/passwordOps';
-import { createTokens } from '../../lib/generateTokens';
+import { createToken } from '../../lib/generateTokens';
 
 passport.use('admin-login', new LocalStrategy({ passReqToCallback: true, usernameField: 'email' },
   (async (_req: Request, email, password, done) => {
@@ -26,28 +26,22 @@ passport.use('admin-login', new LocalStrategy({ passReqToCallback: true, usernam
       }
 
       if (admin && !admin.verified) {
-        return done(null, {
-          type: 'not_verified',
-          payload: {},
-        });
+        return done('Account not verified');
       }
 
-      const [ token, refreshToken ] = createTokens({
+      const token = createToken({
         id: admin.id,
         verified: admin.verified,
         blocked: admin.blocked,
         role: admin.role,
         },
-        `${process.env.JWT_REFRESH_KEY}${admin.password}`);
+        `${process.env.ADMIN_JWT_KEY}`,
+        '7d');
 
       return done(null, {
         type: 'verified',
         mesage: 'Login successful',
-        payload: {
-          token,
-          refreshToken,
-          userId: admin.id,
-        },
+        payload: { token },
       });
     } catch (e) {
       winstonEnvLogger.error({

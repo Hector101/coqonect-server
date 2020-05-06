@@ -9,8 +9,6 @@ import googleAuth from './googleAuth';
 import {
   respondWithSuccess,
   respondWithWarning,
-  cookieResponse,
-  clearAllCookies,
 } from '../../lib/httpResponse';
 import metaRedirect from '../../lib/metaRedirect';
 
@@ -24,23 +22,17 @@ function localAuthentication(
   success: IAuthPayload,
 ) {
   if (error) {
-    clearAllCookies(res);
     return respondWithWarning(res, 401, error);
   }
 
-  if (success.type === 'not_verified') {
-    return respondWithWarning(res, 403, 'Account not verified');
-  }
-
-  const { token, refreshToken } = success.payload;
-
-  cookieResponse(res, '__cnt', token, true, 604800000);
-  cookieResponse(res, '__crt', refreshToken, true, 604800000);
+  const { token } = success.payload;
 
   return respondWithSuccess(
     res,
     200,
-    'Login successful');
+    'Login successful',
+    { token },
+  );
 }
 
 function socialAuthentication(
@@ -50,16 +42,12 @@ function socialAuthentication(
   success: IAuthPayload,
 ) {
   if (error) {
-    clearAllCookies(res);
     return metaRedirect(res, `${process.env.CLIENT_BASE_URL}/auth/login`);
   }
 
-  const { token, refreshToken } = success.payload;
+  const { token } = success.payload;
 
-  cookieResponse(res, '__cnt', token, true, 604800000);
-  cookieResponse(res, '__crt', refreshToken, true, 604800000);
-
-  return metaRedirect(res, `${process.env.CLIENT_BASE_URL}/app/dashboard`);
+  return metaRedirect(res, `${process.env.CLIENT_BASE_URL}/auth/socialAuth?t=${token}`);
 }
 
 // LOCAL LOGIN
@@ -84,6 +72,5 @@ export const adminLoginController = (req: Request, res: Response) =>
 
 // LOGOUT
 export const logoutController = async (_req: Request, res: Response) => {
-  clearAllCookies(res);
   return respondWithSuccess(res, 200, 'Logout successful');
 };

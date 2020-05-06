@@ -11,7 +11,7 @@ import { Account, Profile } from '../../db';
 
 // lib
 import sendToEmail from '../../lib/sendMail';
-import { createTokens } from '../../lib/generateTokens';
+import { createToken } from '../../lib/generateTokens';
 
 passport.use('google', new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
@@ -60,21 +60,18 @@ async (_accessToken, _refreshToken, {
         });
       }
 
-      const [ loginToken, loginRefreshToken ] = createTokens({
+      const token = createToken({
         id: newAccount.id,
         verified: newAccount.verified,
         blocked: newAccount.blocked,
       },
-        `${process.env.JWT_REFRESH_KEY}${newAccount.password}`);
+      `${process.env.JWT_KEY}`,
+        '7d');
 
       return done(null, {
         type: 'verified',
         mesage: 'Login successful',
-        payload: {
-          token: loginToken,
-          refreshToken: loginRefreshToken,
-          userId: newAccount.publicId,
-        },
+        payload: { token },
       });
     }
 
@@ -102,12 +99,13 @@ async (_accessToken, _refreshToken, {
       });
     }
 
-    const [ token, refreshToken ] = createTokens({
+    const newToken = createToken({
       id: account.id,
       verified: account.verified,
       blocked: account.blocked,
     },
-      `${process.env.JWT_REFRESH_KEY}${account.password}`);
+    `${process.env.JWT_KEY}`,
+      '7d');
 
     if (account && !account.verified) {
       await getConnection()
@@ -121,10 +119,7 @@ async (_accessToken, _refreshToken, {
     return done(null, {
       type: 'verified',
       mesage: 'Login successful',
-      payload: {
-        token,
-        refreshToken,
-      },
+      payload: { token: newToken },
     });
   } catch (e) {
     winstonEnvLogger.error({

@@ -1,34 +1,20 @@
 import { Response } from 'express';
 
-export function respondWithSuccess(res: Response, status: number, message: string, additionalFields = {}): Response {
+export function respondWithSuccess(res: Response, status: number, message: string, payload = {}): Response {
   return res.status(status).send({
     status,
     success: true,
     message,
-    payload: Array.isArray(additionalFields)
-      ? [ ...additionalFields ] : { ...additionalFields },
+    payload: Array.isArray(payload)
+      ? [ ...payload ] : { ...payload },
     });
 }
 
-export function respondWithWarning(res: Response, status: number, message: string, additionalFields = {}): Response {
+export function respondWithWarning(res: Response, status: number, message: string, payload = {}): Response {
   return res.status(status).send({
     status,
     success: false,
     message,
-    payload: { ...additionalFields } });
-}
-
-export function cookieResponse(res: Response, name: string, value: string, httpOnly = false, maxAge: number): void {
-  const cookieOptions = {
-    maxAge,
-    httpOnly,
-    ...(process.env.NODE_ENV === 'production' && { secure: true }),
-  };
-
-  res.cookie(name, value, cookieOptions);
-}
-
-export function clearAllCookies(res: Response): void {
-  res.clearCookie('__cnt');
-  res.clearCookie('__crt');
+    payload,
+  });
 }

@@ -19,7 +19,7 @@ dotenv.config();
 
 const isDevEnv = process.env.NODE_ENV === 'development'
   ? 'http://api.coqonect.com:5000'
-  : 'https://coqonect.com';
+  : process.env.BASE_URL;
 
 const MAX_IMAGE_SIZE = 1048576;
 

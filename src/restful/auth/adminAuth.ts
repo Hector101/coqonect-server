@@ -35,7 +35,7 @@ passport.use('admin-login', new LocalStrategy({ passReqToCallback: true, usernam
         blocked: admin.blocked,
         role: admin.role,
         },
-        `${process.env.ADMIN_JWT_KEY}`,
+        `${process.env.JWT_KEY}`,
         '7d');
 
       return done(null, {

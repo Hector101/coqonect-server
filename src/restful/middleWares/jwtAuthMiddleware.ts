@@ -20,6 +20,7 @@ export default async (req: IRequestWithAuthStatus, _res: Response, next: NextFun
 
     authenticateUser(decoded, req);
   } catch (e) {
-    return next();
+    // do nothing
   }
+  return next();
 };

@@ -6,7 +6,7 @@ import verifyToken from '../../lib/verifyToken';
 import IRequestWithAuthStatus from '../../interfaces/IRequestWithAuthStatus';
 import IDecoded from '../../interfaces/IDecoded';
 
-import authenticateUser from '../../lib/authenticateUser';
+import authenticateUser from '../../lib/authenticateRequest';
 
 export default async (req: IRequestWithAuthStatus, _res: Response, next: NextFunction) => {
   const bearerToken = req.headers.authorization;

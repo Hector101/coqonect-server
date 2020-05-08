@@ -7,4 +7,6 @@ export default interface IDecoded {
   expiresIn?: string;
   aud?: string;
   iss?: string;
+  browser?: string;
+  platform?: string;
 }

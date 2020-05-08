@@ -10,7 +10,6 @@ import { Account, Profile } from '../../db';
 
 // libs
 import { isValidPassword } from '../../lib/passwordOps';
-import { createToken } from '../../lib/generateTokens';
 
 passport.use('login', new LocalStrategy({ passReqToCallback: true, usernameField: 'email' },
   (async (_req: Request, email, password, done) => {
@@ -48,18 +47,10 @@ passport.use('login', new LocalStrategy({ passReqToCallback: true, usernameField
         });
       }
 
-      const token = createToken({
-        id: account.id,
-        verified: account.verified,
-        blocked: account.blocked,
-        },
-        `${process.env.JWT_KEY}`,
-        '7d');
-
       return done(null, {
         type: 'verified',
         mesage: 'Login successful',
-        payload: { token },
+        payload: account,
       });
     } catch (e) {
       winstonEnvLogger.error({

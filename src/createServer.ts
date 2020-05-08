@@ -76,4 +76,4 @@ server.installSubscriptionHandlers(httpServer);
 
 app.use('*', (_req: Request, res: Response) => res.send({ message: 'Fuck off!!!' }));
 
-export { httpServer, app };
+export { httpServer, app, server };

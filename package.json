@@ -98,7 +98,7 @@
     "passport-local": "^1.0.0",
     "pg": "^7.8.0",
     "pg-hstore": "^2.3.2",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.24",
     "uuid": "^3.3.2",

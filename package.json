@@ -82,7 +82,7 @@
     "crypto-random-string": "^3.0.1",
     "dataloader": "^1.4.0",
     "dotenv": "^8.2.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-useragent": "^1.0.12",
     "express-validator": "^6.1.1",
     "generate-password": "^1.4.2",
